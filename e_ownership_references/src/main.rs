@@ -33,7 +33,7 @@ fn main() {
     } else {
        println!("Not bananas");
     }
-    
+
 fn eat(consumes: String) -> bool {
     consumes.starts_with("b") && consumes.contains("a")
 }
@@ -46,12 +46,14 @@ fn eat(consumes: String) -> bool {
     // Hint: You will need to dereference the mutable reference in order to assign it a
     // new value.
     //
-    // let mut material = "mud".to_string();
-    // println!("This material is just `{}`.", material);
-    // bedazzle(&mut material);
-    // println!("Wow! Now the material is `{}`!", material);
+    let mut material = "mud".to_string();
+    println!("This material is just `{}`.", material);
+    bedazzle(&mut material);
+    println!("Wow! Now the material is `{}`!", material);
 }
-
+fn bedazzle (s : &mut String) {
+    *s = String::from("sparkly")
+}
 
 fn inspect(s: &String){
     let condition = s.ends_with("s");
