@@ -20,20 +20,23 @@ fn main() {
     // the String if it doesn't already end with "s". Then uncomment and run the code below with
     // `cargo run apple`.  Hint: use `.push_str("s")` on the mutable String reference to add an "s".
     //
-    //change(&mut arg);
-    //println!("I have many {}", arg);
+    change(&mut arg);
+    println!("I have many {}", arg);
 
     // 3. Write a function `eat` that accepts ownership of (consumes) a String and returns a bool
     // indicating whether or not the String both starts with a "b" AND contains an "a".
     // Hint 1: use `.starts_with("b")` and `.contains("a")`
     // Hint 2: `&&` is the boolean "AND" operator
     //
-    //if eat(arg) {
-    //    println!("Might be bananas");
-    //} else {
-    //    println!("Not bananas");
-    //}
-
+    if eat(arg) {
+       println!("Might be bananas");
+    } else {
+       println!("Not bananas");
+    }
+    
+fn eat(consumes: String) -> bool {
+    consumes.starts_with("b") && consumes.contains("a")
+}
     // Try running this program with "boat", "banana", and "grapes" as the arguments :-)
 
     // Challenge: Write a function "bedazzle" that takes a mutable reference to a String and
@@ -57,5 +60,11 @@ fn inspect(s: &String){
         println!("The string was plural");
     } else {
         println! ("The string was definetely unplural");
+    }
+}
+
+fn change(s: &mut String){
+    if !s.ends_with("s") {
+        s.push_str("s")
     }
 }
