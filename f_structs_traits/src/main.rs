@@ -31,7 +31,7 @@ fn main() {
     // Grapes struct.
     //
     //let mut grapes = Grapes { amount_left: 100 };
-    //grapes.bite();
+    grapes.bite();
     //println!("Eat a grape: {:?}", grapes);
 
     // Challenge: Uncomment the code below. Create a generic `bunny_nibbles`

@@ -1,0 +1,15 @@
+/run/media/stan/D/projects/rust/z_final_project/target/debug/deps/nanorand-c4738516b053b085.rmeta: /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/lib.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/buffer.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/crypto.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/crypto/chacha.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/entropy.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/gen.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/wyrand.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/pcg64.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/chacha.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/tls.rs
+
+/run/media/stan/D/projects/rust/z_final_project/target/debug/deps/nanorand-c4738516b053b085.d: /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/lib.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/buffer.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/crypto.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/crypto/chacha.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/entropy.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/gen.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/wyrand.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/pcg64.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/chacha.rs /home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/tls.rs
+
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/lib.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/buffer.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/crypto.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/crypto/chacha.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/entropy.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/gen.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/wyrand.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/pcg64.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/rand/chacha.rs:
+/home/stan/.cargo/registry/src/github.com-1ecc6299db9ec823/nanorand-0.7.0/src/tls.rs:
