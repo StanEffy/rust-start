@@ -49,6 +49,7 @@ fn main() {
             x if x <5.0 => Shot::Hit(x),
             _ => Shot::Miss,
         };
+        
         shots.push(shot)
        
     }
