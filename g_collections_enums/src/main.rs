@@ -42,6 +42,16 @@ fn main() {
     let arrow_coords: Vec<Coord> = get_arrow_coords(5);
     let mut shots: Vec<Shot> = Vec::new();
 
+    for cord in arrow_coords {
+        cord.print_description();
+        let shot = match cord.distance_from_center(){
+            x if x < 1.0 => Shot::Bullseye,
+            x if x <5.0 => Shot::Hit(x),
+            _ => Shot::Miss,
+        };
+        shots.push(shot)
+       
+    }
     // 2. For each coord in arrow_coords:
     //
     //   A. Call `coord.print_description()`
@@ -54,6 +64,11 @@ fn main() {
 
     let mut total = 0;
     // 3. Finally, loop through each shot in shots and add its points to total
+
+    for shot in shots{
+        total += shot.points();
+    };
+
 
     println!("Final point total is: {}", total);
 }
