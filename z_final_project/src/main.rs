@@ -51,7 +51,7 @@ fn main() {
             let outfile = args.remove(0);
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
-            blur(infile, outfile);
+            blur(&infile, &outfile);
         },
 
         // **OPTION**
@@ -64,7 +64,7 @@ fn main() {
             let outfile = args.remove(0);
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
-            brighten(infile, outfile);
+            brighten(&infile, &outfile);
         },
         // **OPTION**
         // Crop -- see the crop() function below
@@ -76,7 +76,7 @@ fn main() {
             let outfile = args.remove(0);
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
-            crop(infile, outfile);
+            crop(&infile, &outfile);
         },
         // **OPTION**
         // Rotate -- see the rotate() function below
@@ -88,7 +88,7 @@ fn main() {
             let outfile = args.remove(0);
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
-            rotate(infile, outfile);
+            rotate(&infile, &outfile);
         },
         // **OPTION**
         // Invert -- see the invert() function below
@@ -100,7 +100,7 @@ fn main() {
             let outfile = args.remove(0);
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
-            invert(infile, outfile);
+            invert(&infile, &outfile);
         },
         // **OPTION**
         // Grayscale -- see the grayscale() function below
@@ -112,7 +112,7 @@ fn main() {
             let outfile = args.remove(0);
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
-            grayscale(infile, outfile);
+            grayscale(&infile, &outfile);
         },
         // A VERY DIFFERENT EXAMPLE...a really fun one. :-)
         "fractal" => {
@@ -133,6 +133,45 @@ fn main() {
             generate(outfile);
         }
         // For everything else...
+        "queue" => {
+            //file.png res.png blur rotate
+            let infil = args.remove(0);
+            let outfile1 = args.remove(0);
+
+            let img = image::open(&infil).expect("Failed to open INFILE.");
+            let img2 = img;
+
+            img2.save(&outfile1).expect("Failed writing OUTFILE.");
+            let infile1 = outfile1.clone();
+
+
+//            let rest = args.remove(0);
+            for arg in &args {
+                println!("Arg is {}", arg);
+                match arg.as_str() {
+                    "blur" => {
+                        blur(&infile1, &outfile1);
+                    },
+                    "rotate" => {
+                        rotate(&infile1, &outfile1);
+                    },
+                    "invert" => {
+                        invert(&infile1, &outfile1);
+                    },
+                    "grayscale" => {
+                        grayscale(&infile1, &outfile1);
+                    },
+                    "crop" => {
+                        crop(&infile1, &outfile1);
+                    },
+                    "brighten" => {
+                        brighten(&infile1, &outfile1);
+                    },
+                    &_ => {}
+                } 
+            }
+            
+        }
         _ => {
             print_usage_and_exit();
         }
@@ -143,12 +182,13 @@ fn print_usage_and_exit() {
     println!("USAGE (when in doubt, use a .png extension on your filenames)");
     println!("blur INFILE OUTFILE");
     println!("fractal OUTFILE");
+    println!("-q INFILE OUTFILE blur rotate invert");
     // **OPTION**
     // Print useful information about what subcommands and arguments you can use
     // println!("...");
     std::process::exit(-1);
 }
-fn getInputResult(text: &str) -> String {
+fn get_input_result(text: &str) -> String {
     let mut value = String::new();
 
     println!("{}", text);
@@ -160,12 +200,12 @@ fn getInputResult(text: &str) -> String {
     value
 
 }
-fn blur(infile: String, outfile: String) {
+fn blur(infile: &String, outfile: &String) {
     // Here's how you open an existing image file
     let img = image::open(infile).expect("Failed to open INFILE.");
     // **OPTION**
     
-    let float_value = getInputResult("Please provide us some blur ratio");
+    let float_value = get_input_result("Please provide us some blur ratio");
 
     let value: f32 = match float_value.trim().parse() {
         Ok(num) => num,
@@ -180,12 +220,12 @@ fn blur(infile: String, outfile: String) {
     img2.save(outfile).expect("Failed writing OUTFILE.");
 }
 
-fn brighten(infile: String, outfile: String) {
+fn brighten(infile: &String, outfile: &String) {
     // See blur() for an example of how to open / save an image.
     let img = image::open(infile).expect("Failed to open INFILE.");
     // .brighten() takes one argument, an i32.  Positive numbers brighten the
     // image. Negative numbers darken it.  It returns a new image.
-    let float_value = getInputResult("Please provide us some brightness value (can be negative)");
+    let float_value = get_input_result("Please provide us some brightness value (can be negative)");
 
     let value: i32 = match float_value.trim().parse() {
         Ok(num) => num,
@@ -200,15 +240,15 @@ fn brighten(infile: String, outfile: String) {
 
 }
 
-fn crop(infile: String, outfile: String) {
+fn crop(infile: &String, outfile: &String) {
     // See blur() for an example of how to open an image.
     let mut img = image::open(infile).expect("Failed to open INFILE.");
     // .crop() takes four arguments: x: u32, y: u32, width: u32, height: u32
     // You may hard-code them, if you like.  It returns a new image.
-    let x = getInputResult("Please provide for value for x");
-    let y = getInputResult("Please provide for value for y");
-    let width = getInputResult("Please provide for value for width (px)");
-    let height = getInputResult("Please provide for value for height (px)");
+    let x = get_input_result("Please provide for value for x");
+    let y = get_input_result("Please provide for value for y");
+    let width = get_input_result("Please provide for value for width (px)");
+    let height = get_input_result("Please provide for value for height (px)");
 
     let x_value: u32 = match x.trim().parse() {
         Ok(num) => num,
@@ -224,14 +264,14 @@ fn crop(infile: String, outfile: String) {
         },
     };
 
-    let width_value: u32 = match x.trim().parse() {
+    let width_value: u32 = match width.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
         },
     };
 
-    let height_value: u32 = match x.trim().parse() {
+    let height_value: u32 = match height.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
@@ -246,7 +286,7 @@ fn crop(infile: String, outfile: String) {
     img2.save(outfile).expect("Failed writing OUTFILE.");
 }
 
-fn rotate(infile: String, outfile: String) {
+fn rotate(infile: &String, outfile: &String) {
     // See blur() for an example of how to open an image.
     let img = image::open(infile).expect("Failed to open INFILE.");
     // There are 3 rotate functions to choose from (all clockwise):
@@ -254,7 +294,7 @@ fn rotate(infile: String, outfile: String) {
     //   .rotate180()
     //   .rotate270()
     // All three methods return a new image.  Pick one and use it!
-    let degree = getInputResult("Please provide one of three values 90, 180 or 270");
+    let degree = get_input_result("Please provide one of three values 90, 180 or 270");
 
     let value: i16 = match degree.trim().parse() {
         Ok(num) => num,
@@ -278,7 +318,7 @@ fn rotate(infile: String, outfile: String) {
    img2.save(outfile).expect("Failed writing OUTFILE.");
 }
 
-fn invert(infile: String, outfile: String) {
+fn invert(infile: &String, outfile: &String) {
     // See blur() for an example of how to open an image.
     let mut img3 = image::open(infile).expect("Failed to open INFILE.");
     // .invert() takes no arguments and converts the image in-place, so you
@@ -287,7 +327,7 @@ fn invert(infile: String, outfile: String) {
     img3.save(outfile).expect("Failed writing OUTFILE.");
 }
 
-fn grayscale(infile: String, outfile: String) {
+fn grayscale(infile: &String, outfile: &String) {
     // See blur() for an example of how to open an image.
     let img = image::open(infile).expect("Failed to open INFILE.");
     // .grayscale() takes no arguments. It returns a new image.
