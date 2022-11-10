@@ -52,7 +52,7 @@ fn main() {
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
             blur(&infile, &outfile);
-        },
+        }
 
         // **OPTION**
         // Brighten -- see the brighten() function below
@@ -65,7 +65,7 @@ fn main() {
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
             brighten(&infile, &outfile);
-        },
+        }
         // **OPTION**
         // Crop -- see the crop() function below
         "crop" => {
@@ -77,7 +77,7 @@ fn main() {
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
             crop(&infile, &outfile);
-        },
+        }
         // **OPTION**
         // Rotate -- see the rotate() function below
         "rotate" => {
@@ -89,7 +89,7 @@ fn main() {
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
             rotate(&infile, &outfile);
-        },
+        }
         // **OPTION**
         // Invert -- see the invert() function below
         "invert" => {
@@ -101,7 +101,7 @@ fn main() {
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
             invert(&infile, &outfile);
-        },
+        }
         // **OPTION**
         // Grayscale -- see the grayscale() function below
         "grayscale" => {
@@ -113,7 +113,7 @@ fn main() {
             // **OPTION**
             // Improve the blur implementation -- see the blur() function below
             grayscale(&infile, &outfile);
-        },
+        }
         // A VERY DIFFERENT EXAMPLE...a really fun one. :-)
         "fractal" => {
             if args.len() != 1 {
@@ -121,7 +121,7 @@ fn main() {
             }
             let outfile = args.remove(0);
             fractal(outfile);
-        },
+        }
 
         // **OPTION**
         // Generate -- see the generate() function below -- this should be sort of like "fractal()"!
@@ -134,7 +134,6 @@ fn main() {
         }
         // For everything else...
         "queue" => {
-            //file.png res.png blur rotate
             let infil = args.remove(0);
             let outfile1 = args.remove(0);
 
@@ -144,33 +143,30 @@ fn main() {
             img2.save(&outfile1).expect("Failed writing OUTFILE.");
             let infile1 = outfile1.clone();
 
-
-//            let rest = args.remove(0);
             for arg in &args {
                 println!("Arg is {}", arg);
                 match arg.as_str() {
                     "blur" => {
                         blur(&infile1, &outfile1);
-                    },
+                    }
                     "rotate" => {
                         rotate(&infile1, &outfile1);
-                    },
+                    }
                     "invert" => {
                         invert(&infile1, &outfile1);
-                    },
+                    }
                     "grayscale" => {
                         grayscale(&infile1, &outfile1);
-                    },
+                    }
                     "crop" => {
                         crop(&infile1, &outfile1);
-                    },
+                    }
                     "brighten" => {
                         brighten(&infile1, &outfile1);
-                    },
+                    }
                     &_ => {}
-                } 
+                }
             }
-            
         }
         _ => {
             print_usage_and_exit();
@@ -198,20 +194,19 @@ fn get_input_result(text: &str) -> String {
         .expect("Failed to read line");
 
     value
-
 }
 fn blur(infile: &String, outfile: &String) {
     // Here's how you open an existing image file
     let img = image::open(infile).expect("Failed to open INFILE.");
     // **OPTION**
-    
+
     let float_value = get_input_result("Please provide us some blur ratio");
 
     let value: f32 = match float_value.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a FLOAT!");
-        },
+        }
     };
     // Parse the blur amount (an f32) from the command-line and pass it through
     // to this function, instead of hard-coding it to 2.0.
@@ -231,13 +226,12 @@ fn brighten(infile: &String, outfile: &String) {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
-        },
+        }
     };
     let img2 = img.brighten(value);
     // Challenge: parse the brightness amount from the command-line and pass it
     // through to this function.
     img2.save(outfile).expect("Failed writing OUTFILE.");
-
 }
 
 fn crop(infile: &String, outfile: &String) {
@@ -254,35 +248,35 @@ fn crop(infile: &String, outfile: &String) {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
-        },
+        }
     };
 
     let y_value: u32 = match y.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
-        },
+        }
     };
 
     let width_value: u32 = match width.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
-        },
+        }
     };
 
     let height_value: u32 = match height.trim().parse() {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
-        },
+        }
     };
 
     // Challenge: parse the four values from the command-line and pass them
     // through to this function.
 
     let img2 = img.crop(x_value, y_value, width_value, height_value);
-   
+
     img2.save(outfile).expect("Failed writing OUTFILE.");
 }
 
@@ -300,12 +294,12 @@ fn rotate(infile: &String, outfile: &String) {
         Ok(num) => num,
         Err(_) => {
             panic!("Please, type a number! Do you know what number is?");
-        },
+        }
     };
     // Challenge: parse the rotation amount from the command-line, pass it
     // through to this function to select which method to call.
     let img2: DynamicImage;
-    
+
     if value == 90 {
         img2 = img.rotate90();
     } else if value == 180 {
@@ -313,9 +307,8 @@ fn rotate(infile: &String, outfile: &String) {
     } else {
         img2 = img.rotate270();
     }
-    
-   
-   img2.save(outfile).expect("Failed writing OUTFILE.");
+
+    img2.save(outfile).expect("Failed writing OUTFILE.");
 }
 
 fn invert(infile: &String, outfile: &String) {
@@ -333,7 +326,7 @@ fn grayscale(infile: &String, outfile: &String) {
     // .grayscale() takes no arguments. It returns a new image.
 
     let img2 = img.grayscale();
-   
+
     img2.save(outfile).expect("Failed writing OUTFILE.");
 }
 
@@ -346,7 +339,7 @@ fn generate(outfile: String) {
     // Iterate over the coordinates and pixels of the image -- see fractal() for an example
     let scale_x = 3.0 / width as f32;
     let scale_y = 3.0 / height as f32;
-    
+
     for (x, y, pixel) in imgbuf.enumerate_pixels_mut() {
         // Use red and blue to be a pretty gradient background
         let red = (0.3 * x as f32) as u8;
@@ -369,14 +362,13 @@ fn generate(outfile: String) {
         *pixel = image::Rgb([red, green, blue]);
     }
 
-
     // Set the image to some solid color. -- see fractal() for an example
 
     // Challenge: parse some color data from the command-line, pass it through
     // to this function to use for the solid color.
 
     // Challenge 2: Generate something more interesting!
-       imgbuf.save(outfile).unwrap();
+    imgbuf.save(outfile).unwrap();
     // See blur() for an example of how to save the image
 }
 
